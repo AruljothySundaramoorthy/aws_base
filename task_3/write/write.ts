@@ -19,7 +19,7 @@ async function createFileAsync() {
   const content = "Created using async/promises write";
   await fsPromises.writeFile(filePath, content);
 
-  console.log("Create file async completed\n");
+  console.log("Create file async completed");
 }
 
 function createFileStream(): Promise<void> {
