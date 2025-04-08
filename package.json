@@ -11,6 +11,11 @@
   "description": "",
   "dependencies": {
     "apollo-server": "^3.13.0",
+    "axios": "^1.8.4",
     "graphql": "^16.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "typescript": "^5.8.3"
   }
 }
