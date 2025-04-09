@@ -1,0 +1,49 @@
+service: lambda-ts-service
+
+frameworkVersion: "4"
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+  environment:
+    USERS_TABLE: users
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Scan
+            - s3:PutObject
+            - s3:GetObject
+          Resource: "*"
+
+functions:
+  getUsers:
+    handler: src/handler.getUsers
+    events:
+      - http:
+          path: users
+          method: get
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: users
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    UploadBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: your-app-user-uploads
