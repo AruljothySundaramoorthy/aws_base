@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { User, RandomUserApiResponse } from "../User";
-async function fetchRandomUser(): Promise<User> {
+export async function fetchRandomUser(): Promise<User> {
   try {
     const response: AxiosResponse<RandomUserApiResponse> = await axios.get(
       "https://randomuser.me/api/"
@@ -11,7 +11,7 @@ async function fetchRandomUser(): Promise<User> {
   }
 }
 
-async function fetchMultipleUsers(count: number): Promise<User[]> {
+export async function fetchMultipleUsers(count: number): Promise<User[]> {
   const promises: Promise<User>[] = [];
   for (let i = 0; i < count; i++) {
     promises.push(fetchRandomUser());

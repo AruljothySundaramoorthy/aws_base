@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { User, RandomUserApiResponse } from "../User";
 
-async function fetchRandomUser(): Promise<User> {
+export async function fetchRandomUser(): Promise<User> {
   try {
     const response: AxiosResponse<RandomUserApiResponse> = await axios.get(
       "https://randomuser.me/api/"
@@ -13,7 +13,7 @@ async function fetchRandomUser(): Promise<User> {
   }
 }
 
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
   try {
     const user = await fetchRandomUser();
     console.log("Random User:");
@@ -31,4 +31,4 @@ async function run(): Promise<void> {
   }
 }
 
-run();
+// run();
